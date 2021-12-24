@@ -22,7 +22,7 @@ func NewServer(cfg *config.Config) *Server {
 		ReadTimeout:  time.Duration(cfg.Server.ReadTimeout),
 		AppName:      cfg.Server.AppName,
 		ServerHeader: cfg.Server.ServerHeader,
-	})}
+	}), cfg: cfg}
 }
 
 func (srv *Server) Run() error {

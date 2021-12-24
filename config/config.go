@@ -70,7 +70,5 @@ func ParseConfig(v *viper.Viper) (*Config, error) {
 		return nil, err
 	}
 
-	log.Printf("Config %+v", &c)
-
 	return &c, nil
 }
