@@ -1,0 +1,27 @@
+# To be superceded by Docker env 
+cache:
+  RedisUser: default
+  RedisPass: ""
+  RedisHost: localhost
+  RedisPort: 6379
+
+db:
+  DBUser: "entapplication"
+  DBPass: "entapplication"
+  DBHost: localhost
+  DBPort: 5432
+
+server:
+  Port: 42069
+  ReadTimeout: 60
+  AppName: "EntApplication"
+  ServerHeader: "EntApplication"
+  Prefork: true
+
+
+logger:
+  LogFile: "/tmp/entapplication.log"
+  Timezone: "Africa/Nairobi"
+  LoggerMaxFileSize: 10
+  CompressLogFile: true
+  UseLocalTime: true

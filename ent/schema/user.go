@@ -23,6 +23,7 @@ func (User) Fields() []ent.Field {
 		field.String("last_name").NotEmpty(),
 		field.String("email_address").NotEmpty(),
 		field.String("country").NotEmpty(),
+		field.String("password").NotEmpty(),
 	}
 }
 
