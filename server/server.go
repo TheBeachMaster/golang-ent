@@ -19,7 +19,7 @@ type Server struct {
 func NewServer(cfg *config.Config) *Server {
 	return &Server{app: fiber.New(fiber.Config{
 		Prefork:      cfg.Server.Prefork,
-		ReadTimeout:  time.Duration(cfg.Server.ReadTimeout),
+		ReadTimeout:  time.Second * time.Duration(cfg.Server.ReadTimeout),
 		AppName:      cfg.Server.AppName,
 		ServerHeader: cfg.Server.ServerHeader,
 	}), cfg: cfg}

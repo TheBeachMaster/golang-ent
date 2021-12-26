@@ -10,9 +10,9 @@ import (
 func main() {
 	log.Println("Starting Server...")
 
-	appConfigPath := "./config"
+	appConfigPath := "./config/config-local"
 
-	cfgFile, err := config.LoadConfig(appConfigPath + "/config-local")
+	cfgFile, err := config.LoadConfig(appConfigPath)
 	if err != nil {
 		log.Fatalf("LoadConfig Error: %v", err)
 	}

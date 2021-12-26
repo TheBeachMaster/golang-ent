@@ -20,7 +20,7 @@ func (Playlist) Fields() []ent.Field {
 		field.UUID("id", uuid.UUID{}).Default(uuid.New),
 		field.Time("created_at").Default(time.Now),
 		field.Time("updated_at").Default(time.Now).UpdateDefault(time.Now),
-		field.String("palylist_name").NotEmpty(),
+		field.String("playlist_name").NotEmpty(),
 	}
 }
 
