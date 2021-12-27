@@ -19,8 +19,10 @@ func (Song) Fields() []ent.Field {
 	return []ent.Field{
 		field.UUID("id", uuid.UUID{}).Default(uuid.New),
 		field.Time("created_at").Default(time.Now),
-		field.String("song_name").NotEmpty(),
+		field.String("name").NotEmpty(),
 		field.String("file_url"),
+		field.String("album").Optional(),
+		field.String("lyrics_url").Optional(),
 	}
 }
 

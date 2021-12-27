@@ -20,7 +20,7 @@ func (Label) Fields() []ent.Field {
 		field.UUID("id", uuid.UUID{}).Default(uuid.New),
 		field.Time("created_at").Default(time.Now),
 		field.Time("updated_at").Default(time.Now).UpdateDefault(time.Now),
-		field.String("label_name").NotEmpty(),
+		field.String("name").NotEmpty(),
 		field.Time("est_date"),
 		field.String("owner").NotEmpty(),
 		field.String("country").NotEmpty(),
