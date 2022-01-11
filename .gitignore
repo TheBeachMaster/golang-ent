@@ -1,3 +1,4 @@
 .env
 ent/*
 !ent/schema
+!ent/generate.go

@@ -21,7 +21,7 @@ func (Song) Fields() []ent.Field {
 		field.Time("created_at").Default(time.Now),
 		field.String("name").NotEmpty(),
 		field.String("file_url"),
-		field.String("album").Optional(),
+		field.String("album_name").Optional(),
 		field.String("lyrics_url").Optional(),
 	}
 }

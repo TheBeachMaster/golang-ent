@@ -1,0 +1,59 @@
+version: "3.7"
+
+services:
+  redis_ui:
+    image: patrikx3/p3x-redis-ui:latest
+    ports:
+      - 7843:7843
+    volumes:
+      - ./redis:/settings
+    networks:
+      - internal
+
+  redis:
+    image: redis
+    container_name: redis
+    # mem_reservation: 512m
+    ports:
+      - 6379:6379
+    networks:
+      - internal
+
+  postgres: # docker volume create --name entexample-volume -d local
+    image: postgres:12-alpine
+    container_name: postgres
+    # mem_reservation: 1g
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: entexample
+      POSTGRES_USER: entexample
+      POSTGRES_DB: entexample
+    networks:
+      - internal
+    volumes: 
+      -  entexample-volume:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    # mem_reservation: 256m
+    environment: 
+      PGADMIN_DEFAULT_EMAIL: whoami@domain.com
+      PGADMIN_DEFAULT_PASSWORD: WHATSTHAT?
+    ports: 
+      - 8011:80
+    networks: 
+      - internal
+    volumes: 
+      - $PWD/pgadmin:/var/lib/pgadmin
+
+volumes:
+  entexample-volume:
+    external: true
+    
+    
+
+networks:
+  internal:
+    external: false

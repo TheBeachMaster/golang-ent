@@ -8,12 +8,12 @@ import (
 	"github.com/google/uuid"
 )
 
-// Album holds the schema definition for the Album entity.
+// Admin holds the schema definition for the Admin entity.
 type Admin struct {
 	ent.Schema
 }
 
-// Fields of the Album.
+// Fields of the Admin.
 func (Admin) Fields() []ent.Field {
 	return []ent.Field{
 		field.UUID("id", uuid.UUID{}).Default(uuid.New),
@@ -26,7 +26,7 @@ func (Admin) Fields() []ent.Field {
 	}
 }
 
-// Edges of the Album.
+// Edges of the Admin.
 func (Admin) Edges() []ent.Edge {
 	return nil
 }
