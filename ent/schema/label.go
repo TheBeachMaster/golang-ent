@@ -31,7 +31,7 @@ func (Label) Fields() []ent.Field {
 func (Label) Edges() []ent.Edge {
 	return []ent.Edge{
 		edge.To("artist", Artist.Type),
-		edge.To("rec_album", Album.Type),
+		edge.To("album", Album.Type),
 		edge.To("single", Song.Type),
 	}
 }

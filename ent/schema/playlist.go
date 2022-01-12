@@ -28,6 +28,6 @@ func (Playlist) Fields() []ent.Field {
 func (Playlist) Edges() []ent.Edge {
 	return []ent.Edge{
 		edge.From("owner", User.Type).Ref("playlists").Unique(),
-		edge.To("playlist_song", Song.Type),
+		edge.To("song", Song.Type),
 	}
 }

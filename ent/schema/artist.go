@@ -32,6 +32,6 @@ func (Artist) Edges() []ent.Edge {
 	return []ent.Edge{
 		edge.To("song", Song.Type),
 		edge.To("album", Album.Type),
-		edge.From("record_label", Label.Type).Ref("artist"),
+		edge.From("label", Label.Type).Ref("artist"),
 	}
 }

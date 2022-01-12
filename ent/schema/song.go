@@ -29,9 +29,9 @@ func (Song) Fields() []ent.Field {
 // Edges of the Song.
 func (Song) Edges() []ent.Edge {
 	return []ent.Edge{
-		edge.From("playlist", Playlist.Type).Ref("playlist_song"),
-		edge.From("song", Artist.Type).Ref("song"),
+		edge.From("playlist", Playlist.Type).Ref("song"),
+		edge.From("artist", Artist.Type).Ref("song"),
 		edge.From("album", Album.Type).Ref("song_list").Unique(),
-		edge.From("rec_label", Label.Type).Ref("single").Unique(),
+		edge.From("label", Label.Type).Ref("single").Unique(),
 	}
 }
