@@ -6,6 +6,7 @@ import (
 	"com.thebeachmaster/entexample/internal/song/models"
 )
 
-type DBRepository interface {
-	Create(ctx context.Context, songinfo *models.CreateSong) (*models.CreateSongResponse, error)
+type SongDBRepository interface {
+	Create(ctx context.Context, songInfo *models.CreateSong) (*models.CreateSongResponse, error)
+	UpdateLyricsURL(ctx context.Context, songInfo *models.UpdateSongLyricsFileURL) (*models.UpdateSongResponse, error)
 }

@@ -26,9 +26,9 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_PASSWORD: entexample
-      POSTGRES_USER: entexample
-      POSTGRES_DB: entexample
+      POSTGRES_PASSWORD: entapplication
+      POSTGRES_USER: entapplication
+      POSTGRES_DB: entapplication
     networks:
       - internal
     volumes: 
