@@ -1,4 +1,4 @@
-package utils
+package pkg
 
 import (
 	"crypto/hmac"
@@ -9,11 +9,9 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
-	"com.thebeachmaster/entexample/common"
 )
 
-func GenerateEntityHash(input *common.HashInput) (string, error) {
+func GenerateEntityHash(input *HashInput) (string, error) {
 	now := time.Now().Unix()
 	str_now := strconv.FormatInt(now, 10)
 	hash := hmac.New(md5.New, []byte(str_now))

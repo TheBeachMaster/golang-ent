@@ -3,12 +3,11 @@ package repository
 import (
 	"context"
 
-	"com.thebeachmaster/entexample/common"
 	"com.thebeachmaster/entexample/ent"
 	songpredicate "com.thebeachmaster/entexample/ent/song"
 	"com.thebeachmaster/entexample/internal/song"
 	"com.thebeachmaster/entexample/internal/song/models"
-	"com.thebeachmaster/entexample/utils"
+	"com.thebeachmaster/entexample/pkg"
 )
 
 type songRepository struct {
@@ -21,11 +20,11 @@ func NewSongRespository(client *ent.Client) song.SongDBRepository {
 
 func (s *songRepository) Create(context context.Context, songInfo *models.CreateSong) (*models.CreateSongResponse, error) {
 	// let's create the entity hash first, that we'll use to query - this is "IDEALLY" unique
-	hashInput := &common.HashInput{
+	hashInput := &pkg.HashInput{
 		Name:     songInfo.Name,
 		Metadata: songInfo.FileURL,
 	}
-	hashValue, err := utils.GenerateEntityHash(hashInput)
+	hashValue, err := pkg.GenerateEntityHash(hashInput)
 	if err != nil {
 		return nil, err
 	}

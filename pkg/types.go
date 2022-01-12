@@ -1,4 +1,4 @@
-package common
+package pkg
 
 type HashInput struct {
 	Name     string
