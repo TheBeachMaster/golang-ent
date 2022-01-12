@@ -26,6 +26,7 @@ type PostgresConfig struct {
 	DBPass string
 	DBHost string
 	DBPort string
+	DBName string
 }
 
 type ServerConfig struct {

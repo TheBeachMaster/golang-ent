@@ -9,6 +9,7 @@ db:
   DBUser: "entapplication"
   DBPass: "entapplication"
   DBHost: localhost
+  DBName: "entapplication"
   DBPort: 5432
 
 server:
