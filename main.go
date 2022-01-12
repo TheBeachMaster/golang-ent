@@ -3,7 +3,9 @@ package main
 import (
 	"context"
 	"database/sql"
+	"fmt"
 	"log"
+	"strings"
 
 	"com.thebeachmaster/entexample/config"
 	"com.thebeachmaster/entexample/ent"
@@ -41,19 +43,20 @@ func main() {
 
 	// postgresql://user:password@host/database
 	// TODO: Handle Heroku DB Conn String
-	dbConnString := "postgresql://" + cfg.DB.DBUser + ":" + cfg.DB.DBPass + "@" + cfg.DB.DBHost + "/" + cfg.DB.DBName
-
+	connStringBuilder := strings.Builder{}
+	connStringBuilder.WriteString(fmt.Sprintf("postgresql://%s:%s@%s/%s", cfg.DB.DBUser, cfg.DB.DBPass, cfg.DB.DBHost, cfg.DB.DBName))
+	dbConnString := connStringBuilder.String()
 	client, err := openDb(dbConnString)
 	if err != nil {
 		log.Fatalf("failed opening connection to postgres: %v", err)
 	}
 	defer client.Close()
 	// Run the auto migration tool.
+	// TODO: maybe add cli flag
 	if err := client.Schema.Create(context.Background()); err != nil {
 		log.Fatalf("failed creating schema resources: %v", err)
 	}
 
-	// Add ent Client
 	server := server.NewServer(cfg, client)
 	if err = server.Run(); err != nil {
 		log.Fatal(err)
