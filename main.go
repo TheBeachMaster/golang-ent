@@ -2,12 +2,27 @@ package main
 
 import (
 	"context"
+	"database/sql"
 	"log"
 
 	"com.thebeachmaster/entexample/config"
 	"com.thebeachmaster/entexample/ent"
 	"com.thebeachmaster/entexample/server"
+
+	"entgo.io/ent/dialect"
+	entsql "entgo.io/ent/dialect/sql"
+	_ "github.com/jackc/pgx/v4/stdlib"
 )
+
+func openDb(databaseUrl string) (*ent.Client, error) {
+	db, err := sql.Open("pgx", databaseUrl)
+	if err != nil {
+		return nil, err
+	}
+
+	drv := entsql.OpenDB(dialect.Postgres, db)
+	return ent.NewClient(ent.Driver(drv)), nil
+}
 
 func main() {
 	log.Println("Starting Server...")
@@ -28,9 +43,9 @@ func main() {
 	// TODO: Handle Heroku DB Conn String
 	dbConnString := "postgresql://" + cfg.DB.DBUser + ":" + cfg.DB.DBPass + "@" + cfg.DB.DBHost + "/" + cfg.DB.DBName
 
-	client, err := ent.Open("postgres", dbConnString)
+	client, err := openDb(dbConnString)
 	if err != nil {
-		log.Fatalf("failed opening connection to sqlite: %v", err)
+		log.Fatalf("failed opening connection to postgres: %v", err)
 	}
 	defer client.Close()
 	// Run the auto migration tool.

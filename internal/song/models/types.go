@@ -4,10 +4,10 @@ import "time"
 
 type (
 	CreateSong struct {
-		Name          string
-		FileURL       string
-		Album         string
-		LyricsFileURL string
+		Name          string `json:"name"`
+		FileURL       string `json:"fileUrl"`
+		Album         string `json:"album"`
+		LyricsFileURL string `json:"lyricsFile"`
 	}
 	CreateSongResponse struct {
 		SongID    string
