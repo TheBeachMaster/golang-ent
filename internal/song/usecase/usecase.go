@@ -32,3 +32,19 @@ func (s *songusecase) AddSongLyrics(context context.Context, lyricsInfo *models.
 	}
 	return res, nil
 }
+
+func (s *songusecase) ListAllSongs(context context.Context) (*models.SongListResponse, error) {
+	res, err := s.repo.GetAllSongs(context)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+func (s *songusecase) FetchSong(context context.Context, hash string) (*models.SongDetailsResponse, error) {
+	res, err := s.repo.GetSong(context, hash)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}

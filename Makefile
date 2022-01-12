@@ -1,7 +1,13 @@
-.PHONY: clean build run
+.PHONY: cli gen clean build run
 
 APP_NAME = entexample
 BUILD_DIR = $(PWD)/bin
+
+cli:
+	go get -d entgo.io/ent/cmd/ent
+
+gen:
+	go generate ./ent 
 
 clean:
 	rm -rf $(BUILD_DIR)

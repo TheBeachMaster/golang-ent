@@ -18,6 +18,7 @@ type Label struct {
 func (Label) Fields() []ent.Field {
 	return []ent.Field{
 		field.UUID("id", uuid.UUID{}).Default(uuid.New),
+		field.String("hash").NotEmpty(),
 		field.Time("created_at").Default(time.Now),
 		field.Time("updated_at").Default(time.Now).UpdateDefault(time.Now),
 		field.String("name").NotEmpty(),

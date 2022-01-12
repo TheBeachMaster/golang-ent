@@ -65,3 +65,48 @@ func (s *songHTTPHandler) UpdateSongLyrics() fiber.Handler {
 		})
 	}
 }
+
+func (s *songHTTPHandler) GetAllSongs() fiber.Handler {
+	return func(c *fiber.Ctx) error {
+		songList, err := s.songUsecase.ListAllSongs(c.Context())
+		if err != nil {
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+				"error":   true,
+				"message": err.Error(),
+			})
+		}
+		return c.JSON(fiber.Map{
+			"error":   false,
+			"message": nil,
+			"songs":   songList,
+		})
+	}
+}
+
+func (s *songHTTPHandler) GetSong() fiber.Handler {
+	return func(c *fiber.Ctx) error {
+		songHash := c.Params("hash")
+
+		isEmpty := len(songHash) == 0
+
+		if isEmpty {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"error":   true,
+				"message": "The param 'hash' can not be empty",
+			})
+		}
+
+		songInfo, err := s.songUsecase.FetchSong(c.Context(), songHash)
+		if err != nil {
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+				"error":   true,
+				"message": err.Error(),
+			})
+		}
+		return c.JSON(fiber.Map{
+			"error":   false,
+			"message": nil,
+			"song":    songInfo,
+		})
+	}
+}

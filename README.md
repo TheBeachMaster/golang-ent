@@ -7,6 +7,7 @@
 > See `README.md` in each folder for documentation
 
 ```
+|-common/*.go # Struct definitions that are shared across the app
 |-config  # All config parsing and loading happens here
   -----/config-local.yaml
   -----/*.go
@@ -16,6 +17,7 @@
   ---/*.go
 |-internal # Actual app logic
 |-server/*.go # Bootstrapping the server
+|-utils/*.go # Functions that are shared within the app
 |-/.main.go # Application entry point
 |-/.Makefile # Small scripts to help you build the app
 ```
@@ -27,6 +29,18 @@
 
 ```bash 
 cd ./containers && docker-compose up -d 
+```
+
+### Get Ent codegen tool (only do this once)
+
+```bash
+make cli
+```
+
+### Generate  Entities
+
+```bash
+make gen
 ```
 
 ### Build the app 

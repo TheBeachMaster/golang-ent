@@ -18,11 +18,14 @@ type Song struct {
 func (Song) Fields() []ent.Field {
 	return []ent.Field{
 		field.UUID("id", uuid.UUID{}).Default(uuid.New),
+		field.String("hash").NotEmpty(),
+		field.Time("updated_at").Default(time.Now).UpdateDefault(time.Now),
 		field.Time("created_at").Default(time.Now),
 		field.String("name").NotEmpty(),
 		field.String("file_url"),
 		field.String("album_name").Optional(),
 		field.String("lyrics_url").Optional(),
+		field.String("thumbnail_url").Optional(),
 	}
 }
 
