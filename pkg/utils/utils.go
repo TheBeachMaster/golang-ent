@@ -11,6 +11,11 @@ import (
 	"time"
 )
 
+type HashInput struct {
+	Name     string
+	Metadata string
+}
+
 func GenerateEntityHash(input *HashInput) (string, error) {
 	now := time.Now().Unix()
 	str_now := strconv.FormatInt(now, 10)

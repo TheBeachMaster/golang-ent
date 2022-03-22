@@ -12,7 +12,7 @@ type songHTTPHandler struct {
 	songUsecase song.SongUseCase
 }
 
-func NewSongHTTPHandler(c *config.Config, u song.SongUseCase) song.SongHTTPHandler {
+func NewSongHTTPHandler(c *config.Config, u song.SongUseCase) song.SongHTTPRoutes {
 	return &songHTTPHandler{cfg: c, songUsecase: u}
 }
 

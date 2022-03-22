@@ -7,7 +7,7 @@ import (
 	songpredicate "com.thebeachmaster/entexample/ent/song"
 	"com.thebeachmaster/entexample/internal/song"
 	"com.thebeachmaster/entexample/internal/song/models"
-	"com.thebeachmaster/entexample/pkg"
+	utils "com.thebeachmaster/entexample/pkg/utils"
 )
 
 type songRepository struct {
@@ -20,11 +20,11 @@ func NewSongRespository(client *ent.Client) song.SongDBRepository {
 
 func (s *songRepository) Create(context context.Context, songInfo *models.CreateSong) (*models.CreateSongResponse, error) {
 	// let's create the entity hash first, that we'll use to query - this is "IDEALLY" unique
-	hashInput := &pkg.HashInput{
+	hashInput := &utils.HashInput{
 		Name:     songInfo.Name,
 		Metadata: songInfo.FileURL,
 	}
-	hashValue, err := pkg.GenerateEntityHash(hashInput)
+	hashValue, err := utils.GenerateEntityHash(hashInput)
 	if err != nil {
 		return nil, err
 	}

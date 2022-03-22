@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"com.thebeachmaster/entexample/config"
+	"com.thebeachmaster/entexample/drivers"
 	"com.thebeachmaster/entexample/ent"
 	"com.thebeachmaster/entexample/server"
 
@@ -57,7 +58,13 @@ func main() {
 		log.Fatalf("failed creating schema resources: %v", err)
 	}
 
-	server := server.NewServer(cfg, client)
+	redisClient, err := drivers.NewRedisDBClient(cfg)
+	if err != nil {
+		log.Printf("failed to connect to redis due to: %v\n", err)
+	}
+	defer redisClient.Close()
+
+	server := server.NewServer(cfg, client, redisClient)
 	if err = server.Run(); err != nil {
 		log.Fatal(err)
 	}

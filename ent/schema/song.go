@@ -1,6 +1,7 @@
 package schema
 
 import (
+	"net/url"
 	"time"
 
 	"entgo.io/ent"
@@ -24,7 +25,7 @@ func (Song) Fields() []ent.Field {
 		field.String("name").NotEmpty(),
 		field.String("file_url"),
 		field.String("album_name").Optional(),
-		field.String("lyrics_url").Optional(),
+		field.JSON("lyrics_url", &url.URL{}).Optional(),
 		field.String("thumbnail_url").Optional(),
 	}
 }

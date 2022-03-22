@@ -15,10 +15,11 @@ type Config struct {
 }
 
 type RedisConfig struct {
-	RedisUser string
-	RedisPass string
-	RedisHost string
-	RedisPort string
+	RedisUser     string
+	RedisPass     string
+	RedisHost     string
+	RedisPort     string
+	RediscloudURL string
 }
 
 type PostgresConfig struct {

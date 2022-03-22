@@ -7,7 +7,6 @@
 > See `README.md` in each folder for documentation
 
 ```
-|-pkg/*.go # Utilities shared across the app
 |-config  # All config parsing and loading happens here
   -----/config-local.yaml
   -----/*.go
@@ -16,6 +15,7 @@
   ---/schema/*.go # Schema definitions
   ---/*.go
 |-internal # Actual app logic
+|-pkg/*.go # Utilities shared across the app
 |-server/*.go # Bootstrapping the server
 |-/.main.go # Application entry point
 |-/.Makefile # Small scripts to help you build the app

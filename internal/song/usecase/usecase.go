@@ -18,33 +18,17 @@ func NewSongUseCase(c *config.Config, r song.SongDBRepository) song.SongUseCase 
 }
 
 func (s *songusecase) AddNewSong(context context.Context, songInfo *models.CreateSong) (*models.CreateSongResponse, error) {
-	res, err := s.repo.Create(context, songInfo)
-	if err != nil {
-		return nil, err
-	}
-	return res, nil
+	return s.repo.Create(context, songInfo)
 }
 
 func (s *songusecase) AddSongLyrics(context context.Context, lyricsInfo *models.UpdateSongLyricsFileURL) (*models.UpdateSongResponse, error) {
-	res, err := s.repo.UpdateLyricsURL(context, lyricsInfo)
-	if err != nil {
-		return nil, err
-	}
-	return res, nil
+	return s.repo.UpdateLyricsURL(context, lyricsInfo)
 }
 
 func (s *songusecase) ListAllSongs(context context.Context) (*models.SongListResponse, error) {
-	res, err := s.repo.GetAllSongs(context)
-	if err != nil {
-		return nil, err
-	}
-	return res, nil
+	return s.repo.GetAllSongs(context)
 }
 
 func (s *songusecase) FetchSong(context context.Context, hash string) (*models.SongDetailsResponse, error) {
-	res, err := s.repo.GetSong(context, hash)
-	if err != nil {
-		return nil, err
-	}
-	return res, nil
+	return s.repo.GetSong(context, hash)
 }

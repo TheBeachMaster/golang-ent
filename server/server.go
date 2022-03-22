@@ -9,6 +9,7 @@ import (
 
 	"com.thebeachmaster/entexample/config"
 	"com.thebeachmaster/entexample/ent"
+	"github.com/go-redis/redis/v8"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -16,15 +17,16 @@ type Server struct {
 	app       *fiber.App
 	cfg       *config.Config
 	entClient *ent.Client
+	redis     *redis.Client
 }
 
-func NewServer(cfg *config.Config, c *ent.Client) *Server {
+func NewServer(cfg *config.Config, c *ent.Client, cache *redis.Client) *Server {
 	return &Server{app: fiber.New(fiber.Config{
 		Prefork:      cfg.Server.Prefork,
 		ReadTimeout:  time.Second * time.Duration(cfg.Server.ReadTimeout),
 		AppName:      cfg.Server.AppName,
 		ServerHeader: cfg.Server.ServerHeader,
-	}), cfg: cfg, entClient: c}
+	}), cfg: cfg, entClient: c, redis: cache}
 }
 
 func (srv *Server) Run() error {
