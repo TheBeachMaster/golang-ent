@@ -1,3 +1,5 @@
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/TheBeachMaster/golang-ent.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/TheBeachMaster/golang-ent/alerts/)
+
 # Golang ent(ity) framework example 
 
 > This is a poor attempt to build a bootleg music streaming application with Golang using coding best practices. This code is for learning purposes only, please obtain a copy of the license before using part(s) of the code in production.
